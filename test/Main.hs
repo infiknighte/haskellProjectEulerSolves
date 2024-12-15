@@ -1,4 +1,6 @@
 module Main (main) where
 
+import Lib (p1)
+
 main :: IO ()
-main = putStrLn "Test suite not yet implemented."
+main = print p1
