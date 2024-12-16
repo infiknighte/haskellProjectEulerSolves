@@ -16,13 +16,13 @@ p2 = sum $ filter even $ fibSqUnder 4000000
 
 -- | What is the largest prime factor of the number 600851475143?
 p3 :: Int
-p3 = head $ primeFactorsOf 600851475143
+p3 = last $ primeFactorsOf 600851475143
   where
     primeFactorsOf :: Int -> [Int]
-    primeFactorsOf n = primeFactorsOf' n 2 []
+    primeFactorsOf n = primeFactorsOf' n 2
       where
-        primeFactorsOf' :: Int -> Int -> [Int] -> [Int]
-        primeFactorsOf' m x xs
-          | m < 2 = xs
-          | m `mod` x == 0 = primeFactorsOf' (m `div` x) x (x : xs)
-          | otherwise = primeFactorsOf' m (x + 1) xs
+        primeFactorsOf' :: Int -> Int -> [Int]
+        primeFactorsOf' m x
+          | x * x > m = [m]
+          | m `mod` x == 0 = x : primeFactorsOf' (m `div` x) x
+          | otherwise = primeFactorsOf' m (x + 1)
