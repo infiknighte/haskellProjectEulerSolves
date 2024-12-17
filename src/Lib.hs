@@ -26,3 +26,9 @@ p3 = last $ primeFactorsOf 600851475143
           | x * x > m = [m]
           | m `mod` x == 0 = x : primeFactorsOf' (m `div` x) x
           | otherwise = primeFactorsOf' m (x + 1)
+
+-- | Find the largest palindrome made from the product of two 3-digit numbers.   |
+p4 :: Int
+p4 = maximum [n | x <- ns, y <- ns, let n = x * y, let s = show n, s == reverse s]
+  where
+    ns = [100 .. 999]
