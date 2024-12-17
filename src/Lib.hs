@@ -32,3 +32,7 @@ p4 :: Int
 p4 = maximum [n | x <- ns, y <- ns, let n = x * y, let s = show n, s == reverse s]
   where
     ns = [100 .. 999]
+
+-- | What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
+p5 :: Int
+p5 = foldl lcm 2520 [11 .. 20]
