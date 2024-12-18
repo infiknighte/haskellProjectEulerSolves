@@ -37,7 +37,31 @@ p4 = maximum [n | x <- ns, y <- ns, let n = x * y, let s = show n, s == reverse 
 p5 :: Int
 p5 = foldl lcm 2520 [11 .. 20]
 
+-- | Find the difference between the sum of the squares of the first one hundred natural numbers and the square of the sum.
 p6 :: Int
 p6 = (sum ns ^ (2 :: Integer)) - sum [n * n | n <- ns]
   where
     ns = [1 .. 100]
+
+-- | What is the 10,001st prime number?
+p7 :: Int
+p7 = nthPrime 10001
+  where
+    nthPrime :: Int -> Int
+    nthPrime = nthPrime' 2
+      where
+        nthPrime' :: Int -> Int -> Int
+        nthPrime' n m
+          | isPrime n = if m == 1 then n else nthPrime' (n + 1) (m - 1)
+          | otherwise = nthPrime' (n + 1) m
+          where
+            isPrime :: Int -> Bool
+            isPrime x
+              | x < 2 = False
+              | otherwise = isPrime' 2
+              where
+                isPrime' :: Int -> Bool
+                isPrime' i
+                  | i * i > x = True
+                  | x `mod` i == 0 = False
+                  | otherwise = isPrime' (i + 1)
