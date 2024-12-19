@@ -61,8 +61,8 @@ library
     -- Modules exported by the library.
     exposed-modules:  Lib
 
-    -- Modules included in this library but not exported.
-    -- other-modules:
+    --Modules included in this library but not exported.
+    other-modules: Utils
 
     -- LANGUAGE extensions used by modules in this package.
     -- other-extensions:
