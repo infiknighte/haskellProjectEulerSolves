@@ -17,13 +17,13 @@ primeFactorsOf n = primeFactorsOf' n 2
       | otherwise = primeFactorsOf' m (x + 1)
 
 -- | Returns the n-th prime number
-nthPrime :: Int -> Int
-nthPrime = nthPrime' 2
+prime :: Int -> Int
+prime = prime' 2
   where
-    nthPrime' :: Int -> Int -> Int
-    nthPrime' n m
-      | isPrime n = if m == 1 then n else nthPrime' (n + 1) (m - 1)
-      | otherwise = nthPrime' (n + 1) m
+    prime' :: Int -> Int -> Int
+    prime' n m
+      | isPrime n = if m == 1 then n else prime' (n + 1) (m - 1)
+      | otherwise = prime' (n + 1) m
 
 -- | Checks if a Int is a prime or not
 isPrime :: Int -> Bool
@@ -34,3 +34,18 @@ isPrime x = (x >= 2) && isPrime' 2
       | i * i > x = True
       | x `mod` i == 0 = False
       | otherwise = isPrime' (i + 1)
+
+pythTriplet :: Int -> (Int, Int, Int)
+pythTriplet x = pythTriplet' 0 2 1
+  where
+    pythTriplet' :: Int -> Int -> Int -> (Int, Int, Int)
+    pythTriplet' i m n
+      | n >= m + 1 = pythTriplet' i (m + 1) 1
+      | otherwise =
+          if i == (x - 1)
+            then
+              let a = m ^ 2 - n ^ 2
+                  b = 2 * m * n
+                  c = (m ^ 2) + (n ^ 2)
+               in (a, b, c)
+            else pythTriplet' (i + 1) m (n + 1)

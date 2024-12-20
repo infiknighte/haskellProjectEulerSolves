@@ -1,6 +1,6 @@
 module Main (main) where
 
-import Lib
+import Lib (p9)
 
 main :: IO ()
-main = print p8
+main = print p9
