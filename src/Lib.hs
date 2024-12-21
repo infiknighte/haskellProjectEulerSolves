@@ -1,6 +1,6 @@
 module Lib where
 
-import Utils
+import Utils qualified as U
 
 -- | Find the sum of all multiples of 3 or 5 below 1000
 p1 :: Int
@@ -9,11 +9,11 @@ p1 = sum $ filter (\x -> x `mod` 3 == 0 || x `mod` 5 == 0) [1 .. 999]
 -- | By considering the terms in the Fibonacci sequence whose values do not exceed four million,
 --  find the sum of the even-valued terms.
 p2 :: Int
-p2 = sum $ filter even $ fibSqUnder 4000000
+p2 = sum $ filter even $ U.fibSqUnder 4000000
 
 -- | What is the largest prime factor of the number 600851475143?
 p3 :: Int
-p3 = last $ primeFactorsOf 600851475143
+p3 = last $ U.primeFactorsOf 600851475143
 
 -- | Find the largest palindrome made from the product of two 3-digit numbers.   |
 p4 :: Int
@@ -33,7 +33,7 @@ p6 = (sum ns ^ 2) - sum [n * n | n <- ns]
 
 -- | What is the 10,001st prime number?
 p7 :: Int
-p7 = prime 10001
+p7 = U.prime 10001
 
 -- | Find the thirteen adjacent digits in the 1000-digit number that have the greatest product. What is the value of this product?
 p8 :: Int
@@ -46,11 +46,9 @@ p8 = maximum $ map product $ combinations $ map (read . (: [])) number
 
 -- | There exists exactly one Pythagorean triplet for which a + b + c = 1000.Find the product abc.
 p9 :: Int
-p9 = solve 1
+p9 = (\(a, b, c) -> a * b * c) . head . filter (\(a, b, c) -> a + b + c == 1000) $ triplets
   where
-    solve :: Int -> Int
-    solve n
-      | a + b + c == 1000 = a * b * c
-      | otherwise = solve (n + 1)
-      where
-        (a, b, c) = pythTriplet n
+    triplets = map U.pythTriplet [1 ..]
+
+p10 :: Int
+p10 = sum $ U.primesIn 2000000

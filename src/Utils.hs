@@ -41,11 +41,15 @@ pythTriplet x = pythTriplet' 0 2 1
     pythTriplet' :: Int -> Int -> Int -> (Int, Int, Int)
     pythTriplet' i m n
       | n >= m + 1 = pythTriplet' i (m + 1) 1
-      | otherwise =
-          if i == (x - 1)
-            then
-              let a = m ^ 2 - n ^ 2
-                  b = 2 * m * n
-                  c = (m ^ 2) + (n ^ 2)
-               in (a, b, c)
-            else pythTriplet' (i + 1) m (n + 1)
+      | i == (x - 1) =
+          let a = m ^ 2 - n ^ 2
+              b = 2 * m * n
+              c = (m ^ 2) + (n ^ 2)
+           in (a, b, c)
+      | otherwise = pythTriplet' (i + 1) m (n + 1)
+
+primesIn :: Int -> [Int]
+primesIn x = primesIn' $ replicate x False
+  where
+    primesIn' :: [Bool] -> [Int]
+    primesIn' ns = []
