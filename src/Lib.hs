@@ -49,6 +49,3 @@ p9 :: Int
 p9 = (\(a, b, c) -> a * b * c) . head . filter (\(a, b, c) -> a + b + c == 1000) $ triplets
   where
     triplets = map U.pythTriplet [1 ..]
-
-p10 :: Int
-p10 = sum $ U.primesIn 2000000

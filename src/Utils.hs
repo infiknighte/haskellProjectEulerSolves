@@ -47,9 +47,3 @@ pythTriplet x = pythTriplet' 0 2 1
               c = (m ^ 2) + (n ^ 2)
            in (a, b, c)
       | otherwise = pythTriplet' (i + 1) m (n + 1)
-
-primesIn :: Int -> [Int]
-primesIn x = primesIn' $ replicate x False
-  where
-    primesIn' :: [Bool] -> [Int]
-    primesIn' ns = []
