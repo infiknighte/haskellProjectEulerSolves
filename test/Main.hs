@@ -1,6 +1,6 @@
 module Main (main) where
 
-import Lib
+import Solve100
 
 main :: IO ()
 main = print p9

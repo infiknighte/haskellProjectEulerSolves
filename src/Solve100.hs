@@ -1,4 +1,4 @@
-module Lib where
+module Solve100 where
 
 import Utils qualified as U
 
