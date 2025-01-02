@@ -3,4 +3,4 @@ module Main (main) where
 import Solve100
 
 main :: IO ()
-main = print p9
+main = print p11
